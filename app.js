@@ -62,18 +62,31 @@ function getRandomWeeklyMeals() {
         const randomNumber = Math.floor(Math.random() * meals.length);
         mealPlan.push(meals[randomNumber]);
     }
-
     return mealPlan;
 }
 
-getRandomWeeklyMeals();
-
+// Create a new list item for every meal and append it to the DOM using the `mealList` element
 function displayWeeklyMealPlan() {
+    const weeklyMeals = getRandomWeeklyMeals();
 
+    for (let i = 0; i < 7; i++) {
+        const li = document.createElement('li');
+        li.innerText = `${weeklyMeals[i]}`;
+        mealList.appendChild(li);
+    }
+    return mealList;
 }
 
 function showPlan() {
-
+    displayWeeklyMealPlan();
+    headline.classList.add('slideUp');
+    headline.textContent = "Here's your weekly meal plan!";
+    headline.style.marginBottom = '0';
+    headline.style.fontSize = '3rem';
+    tagline.style.marginTop = '0';
+    tagline.textContent = '🍅🍆🥑🌽🥖🥩🌮🥟🧁';
+    planDiv.classList.remove('hidden');
+    startButton.style.display = "none";
 }
 
 headline.textContent = getDay();
